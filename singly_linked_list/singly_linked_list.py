@@ -29,10 +29,12 @@ class LinkedList:
             self.tail = new_node
 
     def remove_head(self):
+        if not self.head:
+            return
+            
         value = self.head.value
         self.head = self.head.next
         self.length -= 1
-
         return value
 
     def add_to_tail(self, value):
@@ -62,3 +64,11 @@ class LinkedList:
         self.tail = prev_node
 
         return value
+
+    def contains(self, value):
+        current_node = self.head
+
+        for num in range(self.length):
+            if(current_node.value == value):
+                return True
+            current_node = current_node.next
