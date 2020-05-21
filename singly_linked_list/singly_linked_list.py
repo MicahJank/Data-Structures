@@ -31,11 +31,21 @@ class LinkedList:
     def remove_head(self):
         if not self.head:
             return
-            
+        
+        if self.head == self.tail:
+            value = self.head.value
+            self.head = None
+            self.tail = None
+            return value
+
+        # self.head = self.head.next
         value = self.head.value
         self.head = self.head.next
         self.length -= 1
+        print(self.tail.value)
         return value
+
+            
 
     def add_to_tail(self, value):
         new_node = ListNode(value, None)
@@ -62,13 +72,28 @@ class LinkedList:
         
         prev_node.next = None
         self.tail = prev_node
+        self.length -= 1
 
         return value
 
     def contains(self, value):
         current_node = self.head
 
+        if not self.head:
+            return False
+
         for num in range(self.length):
             if(current_node.value == value):
                 return True
             current_node = current_node.next
+
+    def get_max(self):
+        if self.head:  
+            max_value = 0
+            node = self.head
+            for num in range(self.length):
+                if node.value > max_value:
+                    max_value = node.value
+                node = node.next
+            return max_value
+        return
