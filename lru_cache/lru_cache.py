@@ -36,11 +36,8 @@ class LRUCache:
         # entries those nodes are
         current_node = self.entries.head
         for _ in range(self.entries.length):
-            if current_node.value == key:
-                next_node = current_node.next
+            if key in current_node.value:
                 self.entries.move_to_end(current_node)
-                self.entries.move_to_end(next_node)
-                value = next_node.value
             current_node = current_node.next
 
         return value
@@ -58,24 +55,23 @@ class LRUCache:
     def set(self, key, value):
         current_node = self.entries.head
         for _ in range(self.entries.length):
-            if current_node.value == key:
-                current_node.next.value = value
+            if key in current_node.value:
+                current_node.value = [key, value]
+                self.storage[key] = value
                 print("changing node")
                 return
             current_node = current_node.next
 
         # if the cache is at max capacity we should remove the oldest item from the cache
         if self.length >= self.limit:
-            self.storage.pop(self.entries.head.value)
-            self.entries.remove_from_head()
+            self.storage.pop(self.entries.head.value[0])
             self.entries.remove_from_head()
             self.length -= 1
 
         
         self.length += 1
 
-        self.entries.add_to_tail(key)
-        self.entries.add_to_tail(value)
+        self.entries.add_to_tail([key, value])
 
         self.storage[key] = value
         print(self.storage)
