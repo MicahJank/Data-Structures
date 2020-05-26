@@ -78,4 +78,3 @@ class LRUCache:
         self.entries.add_to_tail(value)
 
         self.storage[key] = value
-        print(self.storage)
