@@ -32,15 +32,13 @@ class LRUCache:
             return None
         
         # i still need to loop over the entries where my key and value nodes are stored
-        # this is because i need to move both of those nodes to the end of the order and i dont know where in the
-        # entries those nodes are
+        # this is because i need to move the node to the end of the order and i dont know where in the
+        # entries the nodes is
         current_node = self.entries.head
         for _ in range(self.entries.length):
-            if current_node.value == key:
-                next_node = current_node.next
+            if key == current_node.value[0]:
                 self.entries.move_to_end(current_node)
-                self.entries.move_to_end(next_node)
-                value = next_node.value
+                break
             current_node = current_node.next
 
         return value
@@ -56,25 +54,28 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        current_node = self.entries.head
-        for _ in range(self.entries.length):
-            if current_node.value == key:
-                current_node.next.value = value
-                print("changing node")
-                return
-            current_node = current_node.next
+        # I should override the value in the dictionairy as well as the dll if the key already exists
+        if key in self.storage:
+            self.storage[key] = value
+
+            current_node = self.entries.head
+            for _ in range(self.entries.length):
+                if current_node.value[0]:
+                    current_node.value[1] = value
+                    self.storage[key] = value
+                    print("changing node")
+                    return
+                current_node = current_node.next
 
         # if the cache is at max capacity we should remove the oldest item from the cache
         if self.length >= self.limit:
-            self.storage.pop(self.entries.head.value)
-            self.entries.remove_from_head()
+            self.storage.pop(self.entries.head.value[0])
             self.entries.remove_from_head()
             self.length -= 1
 
         
         self.length += 1
 
-        self.entries.add_to_tail(key)
-        self.entries.add_to_tail(value)
+        self.entries.add_to_tail([key, value])
 
         self.storage[key] = value
