@@ -20,6 +20,7 @@ class BSTNode:
         node_to_add = BSTNode(value)
         current_node = self
 
+        # Traverse Right
         if value >= self.value:
             while current_node.right is not None:
                 if value >= current_node.value:
@@ -37,33 +38,18 @@ class BSTNode:
             
         # Traverse left
         else:
-            while value <= current_node.value:
-                if current_node.left is None:
-                    current_node.left = node_to_add
+            while current_node is not None:
+                if value < current_node.value:
+                    current_node = current_node.left
                 else:
-                    if value < current_node.left.value:
-                        current_node = current_node.left
-                    else:
-                        if current_node.right is None:
-                            current_node.left = node_to_add
+                    while current_node is not None:
+                        if value >= current_node.value:    
+                            current_node = current_node.right
                         else:
-                            current_node = current_node.left
-
-        # if vale >= current_node.value:
-        #     while value >= current_node.value:
-        #         if current_node.right is None:
-        #             current_node.right = node_to_add
-        #         else:
-        #             current_node = current_node.right
-
-
-        # else:
-        #     while value < current_node.value:
-        #         if current_node.left is None:
-        #             current_node.left = node_to_add
-        #         else:
-        #             current_node = current_node.left
-
+                            current_node.right = node_to_add
+                            break
+            else:
+                current_node = node_to_add
 
     # Return True if the tree contains the value
     # False if it does not
