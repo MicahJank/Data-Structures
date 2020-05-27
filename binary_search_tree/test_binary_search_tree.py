@@ -7,6 +7,7 @@ from binary_search_tree import BSTNode
 class BinarySearchTreeTests(unittest.TestCase):
     def setUp(self):
         self.bst = BSTNode(5)
+        # self.bst = BSTNode(20)
 
     def test_insert(self):
         self.bst.insert(2)
@@ -15,18 +16,48 @@ class BinarySearchTreeTests(unittest.TestCase):
         self.bst.insert(6)
         self.assertEqual(self.bst.left.right.value, 3)
         self.assertEqual(self.bst.right.left.value, 6)
+
+        # custom_tests
+        # self.bst.insert(30)
+        # self.bst.insert(8)
+        # self.bst.insert(14)
+        # self.bst.insert(25)
+        # self.assertEqual(self.bst.right.value, 30)
+        # self.assertEqual(self.bst.left.value, 8)
+        # self.assertEqual(self.bst.right.left.value, 25)
+        # self.assertEqual(self.bst.left.right.value, 14)
+        # self.bst.insert(27)
+        # self.assertEqual(self.bst.right.left.right.value, 27)
+        # self.bst.insert(29)
+        # self.assertEqual(self.bst.right.left.right.right.value, 29)
+        # self.bst.insert(26)
+        # self.assertEqual(self.bst.right.left.right.left.value, 26)
+        # self.bst.insert(28)
+        # self.assertEqual(self.bst.right.left.right.right.left.value, 28)
+        # self.bst.insert(18)
+        # self.bst.insert(15)
+        # self.bst.insert(12)
+        # self.bst.insert(16)
+        # self.bst.insert(17)
+        # self.assertEqual(self.bst.left.right.right.value, 18)
+        # self.assertEqual(self.bst.left.right.right.left.value, 15)
+        # self.assertEqual(self.bst.left.right.right.left.right.value, 16)
+        # self.assertEqual(self.bst.left.right.right.left.right.right.value, 17)
+        # self.assertEqual(self.bst.left.right.left.value, 12)
+
+
         
     def test_handle_dupe_insert(self):
         self.bst2 = BSTNode(1)
         self.bst2.insert(1)
         self.assertEqual(self.bst2.right.value, 1)
 
-    # def test_contains(self):
-    #     self.bst.insert(2)
-    #     self.bst.insert(3)
-    #     self.bst.insert(7)
-    #     self.assertTrue(self.bst.contains(7))
-    #     self.assertFalse(self.bst.contains(8))
+    def test_contains(self):
+        self.bst.insert(2)
+        self.bst.insert(3)
+        self.bst.insert(7)
+        self.assertTrue(self.bst.contains(7))
+        self.assertFalse(self.bst.contains(8))
 
     # def test_get_max(self):
     #     self.assertEqual(self.bst.get_max(), 5)

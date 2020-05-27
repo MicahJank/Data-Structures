@@ -22,39 +22,54 @@ class BSTNode:
 
         # Traverse Right
         if value >= self.value:
-            while current_node.right is not None:
+            while current_node.right is not None or value < current_node.value:
                 if value >= current_node.value:
                     current_node = current_node.right
                 else:
-                    while value < current_node.value:
-                        if current_node.left is not None:    
+                    while current_node.left is not None or value >= current_node.value:
+                        if value < current_node.value:    
                             current_node = current_node.left
                         else:
-                            current_node.left = node_to_add
                             break
+                    else:
+                        current_node.left = node_to_add
+                        break
             else:
                 current_node.right = node_to_add
 
             
         # Traverse left
         else:
-            while current_node is not None:
+            while current_node.left is not None or value >= current_node.value:
                 if value < current_node.value:
                     current_node = current_node.left
                 else:
-                    while current_node is not None:
+                    while current_node.right is not None or value < current_node.value:
                         if value >= current_node.value:    
                             current_node = current_node.right
                         else:
-                            current_node.right = node_to_add
                             break
+                    else:
+                        current_node.right = node_to_add
+                        break
             else:
-                current_node = node_to_add
+                current_node.left = node_to_add
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        current_node = self
+
+        while current_node.value != target:
+            if target > current_node.value and current_node.right is not None:
+                current_node = current_node.right
+            elif target < current_node.value and current_node.left is not None:
+                current_node = current_node.left
+            else:
+                return False
+        else:
+            return True
+
 
     # Return the maximum value found in the tree
     def get_max(self):
