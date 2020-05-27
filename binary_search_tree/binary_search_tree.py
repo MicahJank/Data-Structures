@@ -84,7 +84,18 @@ class BSTNode:
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        current_node = self
+
+        while current_node.right is not None:
+            fn(current_node.value)
+            current_node = current_node.right
+
+            if current_node.left is not None:
+                while current_node.left is not None:
+                    
+                    fn(current_node.left.value)
+        else:
+
 
     # Part 2 -----------------------
 
