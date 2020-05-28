@@ -63,7 +63,7 @@ class LRUCache:
                 if current_node.value[0]:
                     current_node.value[1] = value
                     self.storage[key] = value
-                    print("changing node")
+                    # print("changing node")
                     return
                 current_node = current_node.next
 
@@ -75,7 +75,6 @@ class LRUCache:
 
         
         self.length += 1
-
         self.entries.add_to_tail([key, value])
 
         self.storage[key] = value
