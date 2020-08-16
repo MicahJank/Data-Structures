@@ -169,7 +169,7 @@ class BSTNode:
             # check that the kids are not None
             if current_node.left is not None:
                 # enqueue the kids of the current node on the queue
-                queue.enqueue(current_node.left)
+                queue.enqueue(current_node.left) 
 
             if current_node.right is not None:
                 queue.enqueue(current_node.right)
