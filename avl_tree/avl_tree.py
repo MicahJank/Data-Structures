@@ -46,10 +46,7 @@ class AVLTree:
             self.node.left.update_height()
         
         if self.node.right is not None:
-            self.node.right.update_height()
-        
-
-        
+            self.node.right.update_height()   
             
 
     """
