@@ -94,24 +94,17 @@ class DoublyLinkedList:
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
     def move_to_front(self, node):
-        # node.delete()
+        value = node.value
         self.delete(node)
-        self.length += 1
-        node.next = self.head
-        self.head.prev = node
-        self.head = node
+        self.add_to_head(value)
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
     def move_to_end(self, node):
-        # node.delete()
+        value = node.value
         self.delete(node)
-        # calling delete above makes the length of the list shortened
-        # but since we are simply wanting to move the node and not delete it we need to add the length back
-        self.length += 1
-        node.prev = self.tail
-        self.tail.next = node
-        self.tail = node
+        self.add_to_tail(value)
+        
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""

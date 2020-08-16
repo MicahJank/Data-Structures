@@ -7,7 +7,6 @@ class Node:
         self.key = key
         self.left = None
         self.right = None
-
 """
 A tree class to keep track of things like the
 balance factor and the rebalancing logic
@@ -40,7 +39,15 @@ class AVLTree:
     in the tree
     """
     def update_height(self):
-        pass
+        if self.node.left or self.node.right:
+            self.height += 1
+        
+        if self.node.left is not None:
+            self.node.left.update_height()
+        
+        if self.node.right is not None:
+            self.node.right.update_height()   
+            
 
     """
     Updates the balance factor on the AVLTree class
