@@ -172,7 +172,7 @@ class BSTNode:
                 queue.enqueue(current_node.left) 
 
             if current_node.right is not None:
-                queue.enqueue(current_node.right)
+                queue.enqueue(current_node.right) 
 
             print(current_node.value)
 
